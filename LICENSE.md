@@ -1,4 +1,4 @@
-# locatrix
+# Locatrix
 
 [short description]
 
