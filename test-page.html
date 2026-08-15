@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locatrix Test Page — element playground</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background:#f4f6fb; color:#222; margin:0; padding:30px; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.05rem; margin-top: 34px; color:#334; }
+  section { background:#fff; border:1px solid #dde3ef; border-radius:10px; padding:18px 22px; margin:14px 0; }
+  label { display:inline-block; width:130px; }
+  input, select, textarea { padding:6px 9px; border:1px solid #c9d2e4; border-radius:6px; margin:4px 0; }
+  button { padding:7px 16px; border:none; border-radius:7px; cursor:pointer; margin:4px 6px 4px 0; }
+  .btn-primary { background:#2f6fe4; color:#fff; }
+  .btn-secondary { background:#e4e9f4; color:#223; }
+  table { border-collapse: collapse; margin-top:8px; }
+  td, th { border:1px solid #ccd4e4; padding:6px 14px; }
+  th { background:#eef2fa; }
+  .note { color:#667; font-size:.85rem; }
+</style>
+</head>
+<body>
+  <h1>🧪 Locatrix Test Page</h1>
+  <p class="note">Open this file in your browser, start Locatrix, and hover the elements below. Each section exercises a different locator scenario.</p>
+
+  <section>
+    <h2>1. Rich test attributes (should rank HIGH)</h2>
+    <button class="btn-primary" id="signin-btn" name="signin" data-testid="login-submit" aria-label="Sign in to account">Sign in</button>
+    <button class="btn-secondary" data-qa="cancel-action" data-cy="cancel-btn">Cancel</button>
+  </section>
+
+  <section>
+    <h2>2. Login form (labels, names, placeholder)</h2>
+    <form id="login-form">
+      <div><label for="email">Email</label><input type="email" id="email" name="user_email" placeholder="you@example.com"></div>
+      <div><label for="pwd">Password</label><input type="password" id="pwd" name="user_password"></div>
+      <div><label>Remember me</label><input type="checkbox" name="remember" checked></div>
+      <div><label for="country">Country</label>
+        <select id="country" name="country">
+          <option>India</option><option>USA</option><option>Germany</option>
+        </select>
+      </div>
+      <button type="button" class="btn-primary">Log in</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>3. Dynamic / auto-generated ids (contains()/starts-with() should appear)</h2>
+    <div id="user-4821-row">Row with numeric id: user-4821-row</div>
+    <span id="css-x9k2fq1">Styled-components style id</span>
+    <p id="ember1234">Ember-style id</p>
+  </section>
+
+  <section>
+    <h2>4. Duplicate classes & no attributes (structural fallback)</h2>
+    <button class="btn-secondary tag-chip">Chip A</button>
+    <button class="btn-secondary tag-chip">Chip B</button>
+    <button class="btn-secondary tag-chip">Chip C</button>
+    <div><p><span><em>Deeply nested element with nothing useful</em></span></p></div>
+  </section>
+
+  <section>
+    <h2>5. Duplicate ID (invalid HTML — should be flagged)</h2>
+    <p id="dup-id">First element with dup-id</p>
+    <p id="dup-id">Second element with dup-id</p>
+  </section>
+
+  <section>
+    <h2>6. Links (linkText / partialLinkText)</h2>
+    <a href="#a">Read the full documentation guide</a> ·
+    <a href="#b">Contact support</a> ·
+    <a href="#c">Contact support</a> <span class="note">(duplicate link text)</span>
+  </section>
+
+  <section>
+    <h2>7. Data table (table-aware XPath should appear)</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>John</td><td>Admin</td><td>Active</td><td><button class="btn-secondary">Edit</button></td></tr>
+        <tr><td>Priya</td><td>Tester</td><td>Active</td><td><button class="btn-secondary">Edit</button></td></tr>
+        <tr><td>Chen</td><td>Dev</td><td>Inactive</td><td><button class="btn-secondary">Edit</button></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>8. Shadow DOM (context chain should show shadow-root)</h2>
+    <div id="shadow-host-box"></div>
+  </section>
+
+  <section>
+    <h2>9. Iframe (context chain should show iframe)</h2>
+    <iframe id="child-frame" title="child" style="width:100%;height:110px;border:1px solid #ccd4e4;border-radius:8px;" srcdoc="<button id='inside-frame-btn' style='margin:20px;padding:8px 18px;'>Button inside iframe</button>"></iframe>
+  </section>
+
+  <section>
+    <h2>10. Disabled / hidden states</h2>
+    <button class="btn-secondary" disabled>Disabled button</button>
+    <span style="display:none" id="hidden-el">Hidden span</span>
+    <span class="note">(hidden span is before this note — hover can't reach it, but bulk validate <code>#hidden-el</code> finds it)</span>
+  </section>
+
+  <script>
+    // Shadow DOM setup
+    const host = document.getElementById('shadow-host-box');
+    const root = host.attachShadow({ mode: 'open' });
+    root.innerHTML = `
+      <style>button{padding:8px 18px;border:none;border-radius:7px;background:#7c4fd0;color:#fff;cursor:pointer}</style>
+      <p>This content lives inside a shadow root:</p>
+      <button id="shadow-btn" data-testid="shadow-action">Shadow button</button>
+    `;
+  </script>
+</body>
+</html>
