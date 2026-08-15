@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Locatrix",
+  "version": "1.0.0",
+  "description": "Hover any element to instantly see every locator value (id, name, css, xpath & more) with uniqueness checks and stability ranking. Includes locator highlighting, bulk validation and broken-locator suggestions. 100% local — no data leaves your browser. Owner: Dhinesh Kumar V",
+  "author": "Dhinesh Kumar V",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "locatrix@dhineshkumarv.dev",
+      "strict_min_version": "115.0"
+    }
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Locatrix — Locator Inspector",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "toggle-inspect": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Toggle Locatrix inspect mode"
+    }
+  }
+}

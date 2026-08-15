@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Locatrix</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <img src="icons/icon32.png" alt="" width="22" height="22">
+    <div class="head-text">
+      <h1>Locatrix</h1>
+      <p>Locator inspector for test automation</p>
+    </div>
+    <span class="local-badge" title="All processing happens in your browser. No data is sent anywhere.">🔒 local-only</span>
+  </header>
+
+  <div id="restricted" class="notice notice-warn hidden">
+    ⚠ Inspection isn't available on this page (browser-internal or store pages are protected).
+    Open any normal website and try again.
+  </div>
+
+  <div id="incognito" class="notice notice-info hidden">
+    🕶 Private window detected. If Locatrix isn't responding, enable
+    <b>“Allow in Incognito / Private”</b> for this extension in your browser's
+    extension settings — browsers require this switch to be turned on manually.
+  </div>
+
+  <main>
+    <button id="toggle" class="big-btn">
+      <span class="big-btn-icon">🔍</span>
+      <span class="big-btn-text">
+        <b id="toggle-label">Start Inspecting</b>
+        <small>hover any element · click to pin · Esc to exit</small>
+      </span>
+    </button>
+
+    <button id="tools" class="row-btn">
+      🧰 Locator Tools
+      <small>highlight by locator · bulk validate · nearest match</small>
+    </button>
+
+    <section class="settings">
+      <h2>Preferences</h2>
+
+      <div class="setting">
+        <label>Theme</label>
+        <div class="seg" id="theme-seg">
+          <button data-v="dark">Dark</button>
+          <button data-v="light">Light</button>
+          <button data-v="auto">Auto</button>
+        </div>
+      </div>
+
+      <div class="setting">
+        <label>Panel opacity</label>
+        <input type="range" id="opacity" min="55" max="100">
+        <span id="opacity-val" class="setting-val"></span>
+      </div>
+
+      <div class="setting">
+        <label>Highlight color</label>
+        <input type="color" id="hl-color">
+      </div>
+
+      <div class="setting">
+        <label>Panel position</label>
+        <select id="pos">
+          <option value="cursor">Follow cursor</option>
+          <option value="tr">Top right</option>
+          <option value="tl">Top left</option>
+          <option value="br">Bottom right</option>
+          <option value="bl">Bottom left</option>
+        </select>
+      </div>
+
+      <div class="setting">
+        <label>Copy-All format</label>
+        <select id="fmt">
+          <option value="text">Plain text</option>
+          <option value="json">JSON</option>
+        </select>
+      </div>
+
+      <div class="setting">
+        <label>Reset panel position</label>
+        <button id="reset-panel" class="mini-btn">Reset</button>
+      </div>
+    </section>
+
+    <section class="shortcut">
+      <span>Keyboard shortcut</span>
+      <span class="kbd-group"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>
+    </section>
+  </main>
+
+  <footer>
+    <span>Locatrix v1.0.0</span>
+    <span>Owner: Dhinesh Kumar V</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
